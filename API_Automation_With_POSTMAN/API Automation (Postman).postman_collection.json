@@ -1,0 +1,240 @@
+{
+	"info": {
+		"_postman_id": "45cf7a8b-207b-47f5-82e5-ca9aaaf2230c",
+		"name": "API Automation (Postman)",
+		"description": "Collection to automate POST /pet and GET /pet/{petId} with positive and negative scenarios",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "13502944"
+	},
+	"item": [
+		{
+			"name": "Create Pet Valid Post",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"if (!pm.environment.get('petId')) {",
+							"    const id = Math.floor(Math.random()*900000) + 100000;",
+							"    pm.environment.set('petId', id);",
+							"}",
+							"",
+							"pm.environment.unset('petId_not_exist');"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Status code is 200', function () {",
+							"    pm.response.to.have.status(200);",
+							"});",
+							"",
+							"pm.test('Response has an id and name matches sent id', function () {",
+							"    var json = pm.response.json();",
+							"    pm.expect(json).to.have.property('id');",
+							"    pm.expect(json.id).to.eql(parseInt(pm.environment.get('petId')));",
+							"    pm.expect(json.name).to.eql('Rex-' + pm.environment.get('petId'))",
+							"});",
+							"",
+							"try {",
+							"  var idFromResp = pm.response.json().id;",
+							"  if (idFromResp) pm.environment.set('petId', idFromResp);",
+							"} catch(e) {}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n  \"id\": {{petId}},\n  \"name\": \"Rex-{{petId}}\",\n  \"photoUrls\": [\"http://example.com/photo.jpg\"],\n  \"tags\": [{\"id\": 1, \"name\": \"tag1\"}],\n  \"status\": \"available\"\n}"
+				},
+				"url": {
+					"raw": "{{base_url}}/pet",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pet Valid",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"if (!pm.environment.get('petId')) {",
+							"    postman.setNextRequest('Create Pet - Valid (POST /pet)');",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Status code is 200', function () { pm.response.to.have.status(200); });",
+							"pm.test('Returned pet id matches requested petId', function () {",
+							"  var json = pm.response.json();",
+							"  pm.expect(json.id).to.eql(parseInt(pm.environment.get('petId')));",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/pet/{{petId}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet",
+						"{{petId}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Pet Invalid",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							"if (!pm.environment.get('petId_not_exist')) {",
+							"    const id = Math.floor(Math.random()*900000) + 9000000;",
+							"    pm.environment.set('petId_not_exist', id);",
+							"}"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('404 Status for Petid not found', function () {",
+							"  if (pm.response.code === 404) {",
+							"    var json = pm.response.json();",
+							"    pm.expect(json.message.toLowerCase()).to.include('not found');",
+							"  }",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{base_url}}/pet/{{petId_not_exist}}",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet",
+						"{{petId_not_exist}}"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create Pet Invalid Post",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test('Invalid create expect 405 Status', function () {",
+							"  pm.test('expect 405', () => pm.response.to.have.status(405));",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {},
+						"requests": {}
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json"
+					}
+				],
+				"url": {
+					"raw": "{{base_url}}/pet",
+					"host": [
+						"{{base_url}}"
+					],
+					"path": [
+						"pet"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "https://petstore.swagger.io/v2"
+		},
+		{
+			"key": "petId",
+			"value": ""
+		},
+		{
+			"key": "petId_not_exist",
+			"value": ""
+		}
+	]
+}

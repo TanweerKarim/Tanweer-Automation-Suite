@@ -1,0 +1,42 @@
+{
+    "billing": {
+      "useNewAddress": false,
+      "address": {
+        "country": "United States",
+        "state": "New York",
+        "city": "New York",
+        "address1": "221B Baker Street",
+        "address2": "Apt 10",
+        "zipPostalCode": "10001",
+        "phoneNumber": "+1-212-555-0123",
+        "faxNumber": ""
+      }
+    },
+    "shipping": {
+      "inStorePickup": false,
+      "useNewAddress": false,
+      "address": {
+        "country": "United States",
+        "state": "New York",
+        "city": "New York",
+        "address1": "221B Baker Street",
+        "address2": "Apt 10",
+        "zipPostalCode": "10001",
+        "phoneNumber": "+1-212-555-0123",
+        "faxNumber": ""
+      }
+    },
+    "shippingMethod": "Ground (0.00)",
+    "payment": {
+      "type": "PurchaseOrder",
+      "cardType": "Visa",
+      "cardHolderName": "Test User",
+      "cardNumber": "4111111111111111",
+      "expireMonth": "01",
+      "expireYear": "2028",
+      "cardCode": "123",
+      "poNumber":"PO-2024-001"
+    },
+    "confirmOrder": true
+  }
+  

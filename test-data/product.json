@@ -1,0 +1,52 @@
+{
+  "featuredItems": [{
+      "productName": "$25 Virtual Gift Card",
+      "productType": "gift-card",
+      "recipientName": "John Doe",
+      "recipientEmail": "john@example.com",
+      "message": "Happy Birthday!",
+      "qty": 1
+    },
+    {
+      "productName": "14.1-inch Laptop",
+      "productType": "laptop",
+      "qty": 1
+    },
+    {
+      "productName": "Build your own cheap computer",
+      "productType": "computer",
+      "processor": "Fast [+100.00]",
+      "ram": "8 GB [+60.00]",
+      "hdd": "400 GB [+100.00]",
+      "software": ["Image Viever [+5.00]", "Other Office Suite [+40.00]"],
+      "qty": 1
+    },
+    {
+      "productName": "Build your own computer",
+      "productType": "computer",
+      "processor": "2.2 GHz Intel Pentium Dual-Core E2200",
+      "ram": "8GB [+60.00]",
+      "hdd": "400 GB [+100.00]",
+      "software": ["Microsoft Office [+50.00]", "Total Commander [+5.00]"],
+      "qty": 1
+    },
+    {
+      "productName": "Build your own expensive computer",
+      "productType": "computer",
+      "processor": "Fast [+100.00]",
+      "ram": "8GB [+60.00]",
+      "hdd": "400 GB [+100.00]",
+      "software": ["Other Office Suite [+40.00]"],
+      "qty": 1
+    },
+    {
+      "productName": "Simple Computer",
+      "productType": "computer",
+      "processor": "Slow",
+      "ram": "8 GB [+60.00]",
+      "hdd": "400 GB [+100.00]",
+      "software": [],
+      "qty": 1
+    }
+  ]
+}

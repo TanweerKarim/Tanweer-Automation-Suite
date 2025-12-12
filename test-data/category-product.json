@@ -1,0 +1,51 @@
+{
+    "categories": [
+        {
+        "categoryName": "Books",
+        "products": [{
+                "productName": "Computing and Internet",
+                "productType": "book",
+                "qty": 1
+            },
+            {
+                "productName": "Fiction",
+                "productType": "book",
+                "qty": 1
+            }
+        ]
+    },
+    {
+        "categoryName": "Apparel & Shoes",
+        "products": [{
+                "productName": "50's Rockabilly Polka Dot Top JR Plus Size",
+                "productType": "apparel and shoes",
+                "size":"Small",
+                "qty": 1
+            },
+            {
+                "productName": "Blue and green Sneaker",
+                "productType": "apparel and shoes",
+                "size":"10",
+                "color":"Green",
+                "qty": 1
+            }
+        ]
+    },
+    {
+        "categoryName": "Jewelry",
+        "products": [{
+                "productName": "Create Your Own Jewelry",
+                "productType": "jewelry",
+                "material":"Gold (1 mm)",
+                "lengthInCM":"50",
+                "qty": 1
+            },
+            {
+                "productName": "Black & White Diamond Heart",
+                "productType": "jewelry",
+                "qty": 1
+            }
+        ]
+    }
+]
+}

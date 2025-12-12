@@ -30,6 +30,7 @@ export class LandingPage {
     }
 
     async verifyFeatureProductTitle(){
+        await this.featuredProductTitle.scrollIntoViewIfNeeded();
         await expect(this.featuredProductTitle).toBeVisible();
     }
 }
